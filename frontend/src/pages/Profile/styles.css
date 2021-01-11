@@ -1,0 +1,21 @@
+img:focus, button:focus{
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+}
+div .img{
+    height: 250px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 5px;
+}
+
+div .trash{
+    background: transparent;
+    border: none;
+    opacity: 0.5;
+}
+
+div .trash:hover{
+    opacity: 0.8;
+}
