@@ -8,7 +8,7 @@ class Post extends Model {
             thumbnail_url: {
                 type: DataTypes.VIRTUAL,
                 get: function(){
-                    return `https://myblog-apps.herokuapp.com/files/${this.thumbnail}`
+                    return `http://localhost:3333/files/${this.thumbnail}`
                 }
             },
             description: DataTypes.STRING,
