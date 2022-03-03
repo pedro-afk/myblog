@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs');
 const authConfig = require('../config/authConfig.json');
 
 module.exports = {
-    async index(req,res,next){
+    async index(req,res){
         try {
             const {email,password} = req.body;
             const user = await User.findOne({
@@ -31,11 +31,11 @@ module.exports = {
     
             return res.send({user,token,user_id});
         } catch (error) {
-            next();
+            return res.status(401).json({error:'Erro ao tentar fazer o login'});
         }
     },
     
-    async store(req,res,next){
+    async store(req,res){
         try {
             const { first_name, last_name, email, password } = req.body;
 
@@ -50,9 +50,9 @@ module.exports = {
     
             user.password = undefined;
     
-            return res.status(201).send(user);
+            return res.status(200).send(user);
         } catch (error) {
-            next();
+            return res.status(401).json({error:'Erro ao tentar cadastrar usuário'});
         }
     }
 }

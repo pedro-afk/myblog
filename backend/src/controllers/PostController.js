@@ -3,7 +3,7 @@ const User = require('../models/User');
 
 module.exports = {
 
-    async index(req,res,next){
+    async index(req,res){
         try {
             const { user_id } = req.headers;
             const user = await Post.findAll({
@@ -14,11 +14,10 @@ module.exports = {
             return res.send(user);
         } catch (error) {
             return res.status(401).json({ error: 'Erro ao encontrar seus posts!' });
-            next();
         }
     },
 
-    async store(req,res,next){
+    async store(req,res){
         try {
             const { user_id } = req.headers;
             const { token } = req.headers.authorization;
@@ -38,14 +37,13 @@ module.exports = {
                 description
             });
 
-            return res.status(201).json(post);
+            return res.status(200).json(post);
         } catch (error) {
             return res.status(401).json({ error: 'Erro ao postar' });
-            next();
         }
     },
 
-    async delete(req,res,next){
+    async delete(req,res){
         try {
             const { user_id } = req.headers;
             const { token } = req.headers.authorization;
@@ -64,8 +62,7 @@ module.exports = {
 
             return res.status(200).json({message: 'Post Deletado'});
         } catch (error) {
-            return res.status(401).json({ error: 'Erro ao deletar' })
-            next();
+            return res.status(401).json({ error: 'Erro ao deletar' });
         }
     }
 }
